@@ -18,19 +18,35 @@ def wordle():
     # Select a random secret word from the list
     # secret_word = random.choice(FIVE_LETTER_WORDS)
     gw = WordleGWindow()
-    secret_word = 'chart'
+    
     secret_word = random.choice(FIVE_LETTER_WORDS)
     for i in range (len(secret_word)):
-        gw.set_square_letter(0,i-1,secret_word[i-1])
+        gw.set_square_letter(0,i-1,secret_word[i-1].upper())
 
-
+    
     def enter_action(s):
-        
-        row = s[:N_COLS]
-        if row.lower() in FIVE_LETTER_WORDS:
-            gw.show_message("First 5 row entered: " + row)
+        guess = s[:N_COLS]
+        if guess.lower() in FIVE_LETTER_WORDS:
+            gw.show_message("It's a valid word")
+
+            #check each letter in our string and see if the same letter is in secret word
+            # for i in range(len(secret_word)):
+            #     for j in range(len(guess)):
+            #         if secret_word[i-1] == guess[j-1]:
+            #             gw.set_square_color(i-1,j-1,CORRECT_COLOR)
+            
+            #check if a letter in both strings is in the same position
+
+
+            rowNum = gw.get_current_row()
+            if rowNum < N_ROWS -1:
+                gw.set_current_row(rowNum + 1)
         else:
             gw.show_message("Not in word list")
+        
+        
+
+        # gw.add_enter_listener(enter_action)
     
     gw.add_enter_listener(enter_action)
 
