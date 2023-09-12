@@ -28,12 +28,15 @@ def wordle():
         guess = s[:N_COLS]
         if guess.lower() in FIVE_LETTER_WORDS:
             gw.show_message("It's a valid word")
+            # gw.set_square_color(0,0,CORRECT_COLOR)
 
-            #check each letter in our string and see if the same letter is in secret word
-            # for i in range(len(secret_word)):
-            #     for j in range(len(guess)):
-            #         if secret_word[i-1] == guess[j-1]:
-            #             gw.set_square_color(i-1,j-1,CORRECT_COLOR)
+            # check each letter in our string and see if the same letter is in secret word
+            for i in range(len(secret_word)):
+                for j in range(len(secret_word)):
+                    if (secret_word[i-1].lower() == guess[j-1].lower() and i==j):
+                        gw.set_square_color(gw.get_current_row(),i-1,CORRECT_COLOR)
+                    # elif (guess[j-1].lower() in secret_word and i != j):
+                    #     gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
             
             #check if a letter in both strings is in the same position
 
