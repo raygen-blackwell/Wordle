@@ -28,7 +28,6 @@ def wordle():
         guess = s[:N_COLS]
         if guess.lower() in FIVE_LETTER_WORDS:
             gw.show_message("It's a valid word")
-            # gw.set_square_color(0,0,CORRECT_COLOR)
 
             # check each letter in our string and see if the same letter is in secret word
             for i in range(len(secret_word)):
@@ -49,6 +48,9 @@ def wordle():
                 gw.set_current_row(rowNum + 1)
         else:
             gw.show_message("Not in word list")
+
+        if guess.lower() == secret_word.lower():
+            gw.show_message("CONGRATULATIONS! YOU GUESSED THE WORD!")
         
         
 
