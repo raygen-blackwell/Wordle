@@ -15,15 +15,14 @@ PRESENT_COLOR = "#CCBB66" # A shade of brownish yellow
 MISSING_COLOR = "#999999" # A shade of gray
 
 def wordle():
-    # Select a random secret word from the list
-    # secret_word = random.choice(FIVE_LETTER_WORDS)
+
     gw = WordleGWindow()
-    
+
+    # Select a random secret word from the list
     secret_word = random.choice(FIVE_LETTER_WORDS)
     for i in range (len(secret_word)):
         gw.set_square_letter(0,i-1,secret_word[i-1].upper())
 
-    
     def enter_action(s):
         guess = s[:N_COLS]
         if guess.lower() in FIVE_LETTER_WORDS:
@@ -46,18 +45,14 @@ def wordle():
             rowNum = gw.get_current_row()
             if rowNum < N_ROWS -1:
                 gw.set_current_row(rowNum + 1)
+            
         else:
             gw.show_message("Not in word list")
 
         if guess.lower() == secret_word.lower():
             gw.show_message("CONGRATULATIONS! YOU GUESSED THE WORD!")
         
-        
-
-        # gw.add_enter_listener(enter_action)
-    
     gw.add_enter_listener(enter_action)
-
 
 # Startup code
 
