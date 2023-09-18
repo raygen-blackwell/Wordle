@@ -32,14 +32,23 @@ def wordle():
             for i in range(len(secret_word)):
                 for j in range(len(secret_word)):
 
-                    #if the character is in the correct place, color that square green
+                    #if the character is in the correct place, color that character green on the board and the keyboard
                     if (secret_word[i-1].lower() == guess[j-1].lower() and i==j):
                         gw.set_square_color(gw.get_current_row(),i-1,CORRECT_COLOR)
+                        gw.set_key_color(secret_word[i-1].upper(),CORRECT_COLOR)
                     
-                    #if the character is in the word, but not the correct place, color it yellow
+                    #if the character is in the word, but not the correct place, color it yellow on the board
                     if gw.get_square_color(gw.get_current_row(),i-1) != CORRECT_COLOR:    
                         if (guess[i-1].lower() == secret_word[j-1].lower() and i!=j):
                             gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
+                            
+                        #if the character is not in the word, color it grey on both the board and the keyboard
+                        if (guess[i-1].lower() not in secret_word):
+                            gw.set_square_color(gw.get_current_row(),i-1,MISSING_COLOR)
+                            gw.set_key_color(guess[i-1].upper(),MISSING_COLOR)
+                        
+
+                    
 
 
             rowNum = gw.get_current_row()
