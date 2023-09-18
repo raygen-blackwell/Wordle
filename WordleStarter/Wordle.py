@@ -33,12 +33,15 @@ def wordle():
             # check each letter in our string and see if the same letter is in secret word
             for i in range(len(secret_word)):
                 for j in range(len(secret_word)):
+
+                    #if the character is in the correct place, color that square green
                     if (secret_word[i-1].lower() == guess[j-1].lower() and i==j):
                         gw.set_square_color(gw.get_current_row(),i-1,CORRECT_COLOR)
-                    # elif (guess[j-1].lower() in secret_word and i != j):
-                    #     gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
-            
-            #check if a letter in both strings is in the same position
+                    
+                    #if the character is in the word, but not the correct place, color it yellow
+                    if gw.get_square_color(gw.get_current_row(),i-1) != CORRECT_COLOR:    
+                        if (guess[i-1].lower() == secret_word[j-1].lower() and i!=j):
+                            gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
 
 
             rowNum = gw.get_current_row()
