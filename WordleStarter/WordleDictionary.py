@@ -4,13 +4,14 @@
 This module defines the dictionary of five-letter words used in
 the Wordle project.
 """
+FIVE_LETTER_WORDS_DUTCH = ["aaaaa","bbbbb","ccccc"]
 
-FIVE_LETTER_WORDS = [
+FIVE_LETTER_WORDS_ENGLISH = [
     "aahed", "aalii", "abaca", "abaci", "aback", "abaft", "abamp",
     "abase", "abash", "abate", "abbas", "abbey", "abbot", "abeam",
     "abets", "abhor", "abide", "abled", "abler", "abmho", "abode",
     "abohm", "aboil", "aboon", "abort", "about", "above", "abuse",
-    "abuts", "abuzz", "abyes", "abysm", "abyss", "acari", "acerb",
+    "abuts", "abuzz", "abyes", "abysm", "adrive", "acari", "acerb",
     "ached", "aches", "achoo", "acids", "acmes", "acned", "acnes",
     "acold", "acorn", "acred", "acres", "acrid", "acted", "actin",
     "actor", "acute", "adage", "adapt", "addax", "added", "adder",
