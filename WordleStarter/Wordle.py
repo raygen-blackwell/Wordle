@@ -16,6 +16,7 @@ MISSING_COLOR = "#999999"  # A shade of gray
 
 
 def wordle():
+
     gw = WordleGWindow()
 
     # Select a random secret word from the list
@@ -33,22 +34,40 @@ def wordle():
             # Check each letter in our string and see if the same letter is in secret word
             for i in range(len(secret_word)):
                 for j in range(len(secret_word)):
-                    # If the letter is correct and in the correct position
-                    if (secret_word[i-1].lower() == guess[j-1].lower() and i == j):
-                        gw.set_square_color(
-                            gw.get_current_row(), i-1, CORRECT_COLOR)
-                    # If the letter is correct but in the wrong position
-                    # elif (guess[j-1].lower() in secret_word and i != j):
-                    #     gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
+
+
+                    #if the character is in the correct place, color that character green on the board and the keyboard
+                    if (secret_word[i-1].lower() == guess[j-1].lower() and i==j):
+                        gw.set_square_color(gw.get_current_row(),i-1,CORRECT_COLOR)
+                        gw.set_key_color(secret_word[i-1].upper(),CORRECT_COLOR)
+                    
+                    #if the character is in the word, but not the correct place, color it yellow on the board
+                    if gw.get_square_color(gw.get_current_row(),i-1) != CORRECT_COLOR:    
+                        if (guess[i-1].lower() == secret_word[j-1].lower() and i!=j):
+                            gw.set_square_color(gw.get_current_row(),i-1,PRESENT_COLOR)
+                            
+                        #if the character is not in the word, color it grey on both the board and the keyboard
+                        if (guess[i-1].lower() not in secret_word):
+                            gw.set_square_color(gw.get_current_row(),i-1,MISSING_COLOR)
+                            gw.set_key_color(guess[i-1].upper(),MISSING_COLOR)
+                        
+
+                    
+
 
             # Move down to the next row
             rowNum = gw.get_current_row()
             if rowNum < N_ROWS - 1:
                 gw.set_current_row(rowNum + 1)
+            
         else:
             gw.show_message("Not in word list")
 
-        # gw.add_enter_listener(enter_action)
+
+        if guess.lower() == secret_word.lower():
+            gw.show_message("CONGRATULATIONS! YOU GUESSED THE WORD!")
+        
+
     gw.add_enter_listener(enter_action)
 
 # Startup code
