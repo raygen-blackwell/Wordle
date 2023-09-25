@@ -24,20 +24,19 @@ def wordle():
     MISSING_COLOR = "#999999"  # A shade of gray
 
     myList = FIVE_LETTER_WORDS_ENGLISH
-    button1_clicked = False
-    button2_clicked = False
+
     root = tkinter.Tk()
     root.title("Color Scheme and Language Settings")
 
     def button1_click():
-        button1_clicked = True
-        # label.config(text="Settings Changed! Language is now Dutch :)")
+        nonlocal myList
+        label.config(text="Settings Changed! Language is now Dutch :)")
         myList = FIVE_LETTER_WORDS_DUTCH
+
     def button2_click():
         nonlocal CORRECT_COLOR
         nonlocal PRESENT_COLOR
         nonlocal MISSING_COLOR
-        button2_clicked = True
         CORRECT_COLOR = "#1974d2" # A shade of blue
         PRESENT_COLOR = "#fff68f" # A shade of nicer yellow
         MISSING_COLOR = "#cc3333" # A shade of red
@@ -46,23 +45,10 @@ def wordle():
     label = tkinter.Label(text="")
     label.pack()
     
-    
     button = tkinter.Button(text = "CHANGE LANGUAGE TO DUTCH", command=button1_click)
     button.pack()
     button2 = tkinter.Button(text = "CHANGE COLOR SCHEME", command=button2_click)
     button2.pack()
-
-    # root.destroy()
-
-    
-    # if button2_clicked == True:
-    #     CORRECT_COLOR = "#1974d2" # A shade of blue
-    #     PRESENT_COLOR = "#fff68f" # A shade of nicer yellow
-    #     MISSING_COLOR = "#cc3333" # A shade of red
-    # else:
-    # CORRECT_COLOR = "#66BB66" # A shade of green
-    # PRESENT_COLOR = "#CCBB66" # A shade of brownish yellow
-    # MISSING_COLOR = "#999999" # A shade of gray
     
 
     # if button1_clicked == True:
