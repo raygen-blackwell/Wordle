@@ -4,7 +4,19 @@
 This module defines the dictionary of five-letter words used in
 the Wordle project.
 """
-FIVE_LETTER_WORDS_DUTCH = ["aaaaa","bbbbb","ccccc"]
+FIVE_LETTER_WORDS_DUTCH = ["appel","fiets","tafel","lucht","rokje","stoel","toren","visje","zwaan","zweep"]
+
+# Appel - Apple
+# Fiets - Bicycle
+# Tafel - Table
+# Lucht - Air
+# Neus - Nose
+# Rokje - Skirt
+# Stoel - Chair
+# Toren - Tower
+# Visje - Fish
+# Zwaan - Swan
+# Zweep - Whip
 
 FIVE_LETTER_WORDS_ENGLISH = [
     "aahed", "aalii", "abaca", "abaci", "aback", "abaft", "abamp",
