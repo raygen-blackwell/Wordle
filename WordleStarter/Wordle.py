@@ -32,7 +32,8 @@ def wordle():
         nonlocal myList
         label.config(text="Settings Changed! Language is now Dutch :)")
         myList = FIVE_LETTER_WORDS_DUTCH
-
+        show_word()
+        
     def button2_click():
         nonlocal CORRECT_COLOR
         nonlocal PRESENT_COLOR
