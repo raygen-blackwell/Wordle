@@ -12,35 +12,49 @@ from WordleDictionary import FIVE_LETTER_WORDS_ENGLISH
 from WordleDictionary import FIVE_LETTER_WORDS_DUTCH
 from WordleGraphics import WordleGWindow, N_COLS, N_ROWS
 
-CORRECT_COLOR = "#66BB66"  # A shade of green
-PRESENT_COLOR = "#CCBB66"  # A shade of brownish yellow
-MISSING_COLOR = "#999999"  # A shade of gray
+
+
+
 
 
 def wordle():
 
+    CORRECT_COLOR = "#66BB66"  # A shade of green
+    PRESENT_COLOR = "#CCBB66"  # A shade of brownish yellow
+    MISSING_COLOR = "#999999"  # A shade of gray
+
     myList = FIVE_LETTER_WORDS_ENGLISH
     button1_clicked = False
     button2_clicked = False
-   
+    root = tkinter.Tk()
+    root.title("Color Scheme and Language Settings")
 
     def button1_click():
         button1_clicked = True
         # label.config(text="Settings Changed! Language is now Dutch :)")
         myList = FIVE_LETTER_WORDS_DUTCH
     def button2_click():
+        nonlocal CORRECT_COLOR
+        nonlocal PRESENT_COLOR
+        nonlocal MISSING_COLOR
         button2_clicked = True
+        CORRECT_COLOR = "#1974d2" # A shade of blue
+        PRESENT_COLOR = "#fff68f" # A shade of nicer yellow
+        MISSING_COLOR = "#cc3333" # A shade of red
         label.config(text="Settings Changed! Colors are now Blue/Yellow/Red")
         
     label = tkinter.Label(text="")
     label.pack()
     
-    gw = WordleGWindow()
+    
     button = tkinter.Button(text = "CHANGE LANGUAGE TO DUTCH", command=button1_click)
     button.pack()
     button2 = tkinter.Button(text = "CHANGE COLOR SCHEME", command=button2_click)
     button2.pack()
 
+    # root.destroy()
+
+    
     # if button2_clicked == True:
     #     CORRECT_COLOR = "#1974d2" # A shade of blue
     #     PRESENT_COLOR = "#fff68f" # A shade of nicer yellow
@@ -57,13 +71,13 @@ def wordle():
     #     myList = FIVE_LETTER_WORDS_ENGLISH
 
     
-    
+    def show_word():
     # Select a random secret word from the list
-    secret_word = random.choice(myList)
-    game_over = False
-    # Display secret word for testing purposes
-    for i in range(len(secret_word)):
-        gw.set_square_letter(0, i-1, secret_word[i-1].upper())
+        global secret_word
+        secret_word = random.choice(myList)
+        # Display secret word for testing purposes
+        for i in range(len(secret_word)):
+            gw.set_square_letter(0, i-1, secret_word[i-1].upper())
     
     guess_count = 0
 
@@ -101,14 +115,10 @@ def wordle():
                     # Move down to the next row
                     rowNum = gw.get_current_row()
                     if rowNum < N_ROWS - 1:
-                        gw.set_current_row(rowNum + 1)
-                        
+                        gw.set_current_row(rowNum + 1)    
                     
                 else:
                     gw.show_message("Not in word list")
-
-                
-
 
                 if guess.lower() == secret_word.lower():
                     gw.show_message("CONGRATULATIONS! YOU GUESSED THE WORD!")
@@ -121,8 +131,9 @@ def wordle():
             else:
                 return
                 
-        
+    gw = WordleGWindow() 
     gw.add_enter_listener(enter_action)
+    show_word()
 
 # Startup code
 
